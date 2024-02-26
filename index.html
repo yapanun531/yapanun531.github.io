@@ -7,34 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <script type="module">
-    const firebaseConfig = {
-        apiKey: window.env.APP_KEY,
-        authDomain: window.env.AUTH_DOMAIN,
-        projectId: window.env.PROJECT_ID,
-        storageBucket: window.env.STORAGE_BUCKET,
-        messagingSenderId: window.env.MESSAGING_SENDER_ID,
-        appId: window.env.APP_ID
-    };
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore(app);
 
 
-    const dataCollection = db.collection('data');
-    dataCollection.get().then((querySnapshot) => {
-        let list = [];
-        querySnapshot.forEach((doc) => list.push(doc.data().name));
+    var names = ['葛允增', '李沛澄', '王翊帆', '莊瑋杰', '蔡紘揚', '彭冠綸', '鄭懷謙', '張傑程', '凱德爾', '劉光尚', '米哈洛', '喬楚瑜', '陳晉垣', '潘建宏', '莊博元', '陳慶達', '傅發翔', '江均'];
+    var nameSelect = document.getElementById("name");
+    var inner = "";
+    for (var i = 0; i < names.length; i++) {
+        inner = inner + '<option value=' + names[i] + '>' + names[i] + '</option>';
+    }
+    nameSelect.innerHTML = inner;
 
-        var nameSelect = document.getElementById("name");
-        var inner = "";
-        for (var i = 0; i < list.length; i++) {
-            inner = inner + '<option value=' + list[i] + '>' + list[i] + '</option>';
-        }
-        nameSelect.innerHTML = inner;
-    })
     const account = document.getElementById('account').value;
     const password = document.getElementById('password').value;
     const name = document.getElementById('name').value;
