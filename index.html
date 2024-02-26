@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -16,16 +15,8 @@
         console.log(dataList)
     }
 
-    var colleges = ['請選擇學院', '文學院', '藝術學院', '傳播學院', '教育學院', '醫學院', '理工學院', '外國語文學院', '民生學院', '法律學院', '社會科學院', '管理學院', '織品服裝學院', '全人教育課程中心', '進修部'];
-    var collegeSelect = document.getElementById("p_college");
-    var inner = "";
-    for (var i = 0; i < colleges.length; i++) {
-        inner = inner + '<option value=' + colleges[i] + '>' + colleges[i] + '</option>';
-    }
-    collegeSelect.innerHTML = inner;
-
     Telegram.WebApp.ready();
-    Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
+    Telegram.WebApp.MainButton.setText('Choose Color').show().onClick(function () {
         const data = JSON.stringify({ hex: colorPicker.color.hexString, rgb: colorPicker.color.rgb });
         Telegram.WebApp.sendData(data);
         Telegram.WebApp.close();
