@@ -9,15 +9,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<script type="text/javascript">
-    Telegram.WebApp.ready();
-    Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
-        const data = JSON.stringify({ account: account, name: name, password: password });
-        Telegram.WebApp.sendData(data);
-        Telegram.WebApp.close();
-    });
-</script>
-
 <body>
     <div class="inputBox">
         <select class="form-select" name="name" id="name" required></select>
@@ -45,7 +36,12 @@
     const account = document.getElementById('account').value;
     const password = document.getElementById('password').value;
     const name = document.getElementById('name').value;
-
+    Telegram.WebApp.ready();
+    Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
+        const data = JSON.stringify({ account: account, name: name, password: password });
+        Telegram.WebApp.sendData(data);
+        Telegram.WebApp.close();
+    });
     Telegram.WebApp.expand();
 </script>
 
