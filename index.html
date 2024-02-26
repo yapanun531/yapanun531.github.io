@@ -44,7 +44,8 @@
     const account = document.getElementById('account').value;
     const password = document.getElementById('password').value;
     const name = document.getElementById('name').value;
-
+</script>
+<script type="text/javascript">
     Telegram.WebApp.ready();
     Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
         const data = JSON.stringify({ account: account, name: name, password: password });
