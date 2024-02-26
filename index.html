@@ -6,10 +6,6 @@
     <title>Document</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -18,12 +14,10 @@
     const firebaseConfig = {
         apiKey: process.env.APP_KEY,
         authDomain: process.env.AUTH_DOMAIN,
-        databaseURL: "https://ballbibot-default-rtdb.asia-southeast1.firebasedatabase.app",
         projectId: process.env.PROJECT_ID,
         storageBucket: process.env.STORAGE_BUCKET,
         messagingSenderId: process.env.MESSAGING_SENDER_ID,
-        appId: process.env.APP_ID,
-        measurementId: "G-C3VVW57EVV"
+        appId: process.env.APP_ID
     };
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore(app);
@@ -67,23 +61,6 @@
         <input type="password" id="floatingPassword" required>
         <span>密碼:</span>
     </div>
-    <script>
-        var checkEye = document.getElementById("checkEye");
-        var floatingPassword = document.getElementById("floatingPassword");
-
-        checkEye.addEventListener("click", function () {
-            if (floatingPassword.getAttribute("type") === "password") {
-                floatingPassword.setAttribute("type", "text");
-                checkEye.classList.remove("fa-eye");
-                checkEye.classList.add("fa-eye-slash");
-            }
-            else {
-                floatingPassword.setAttribute("type", "password");
-                checkEye.classList.remove("fa-eye-slash");
-                checkEye.classList.add("fa-eye");
-            }
-        });
-    </script>
 </body>
 <script type="text/javascript">
     Telegram.WebApp.expand();
