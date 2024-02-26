@@ -8,9 +8,9 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<script type="module">
 
 
+<script type="text/javascript">
     var names = ['葛允增', '李沛澄', '王翊帆', '莊瑋杰', '蔡紘揚', '彭冠綸', '鄭懷謙', '張傑程', '凱德爾', '劉光尚', '米哈洛', '喬楚瑜', '陳晉垣', '潘建宏', '莊博元', '陳慶達', '傅發翔', '江均'];
     var nameSelect = document.getElementById("name");
     var inner = "";
@@ -22,8 +22,7 @@
     const account = document.getElementById('account').value;
     const password = document.getElementById('password').value;
     const name = document.getElementById('name').value;
-</script>
-<script type="text/javascript">
+
     Telegram.WebApp.ready();
     Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
         const data = JSON.stringify({ account: account, name: name, password: password });
