@@ -10,7 +10,7 @@
 <script type="text/javascript">
     Telegram.WebApp.ready();
     Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
-        const data = JSON.stringify({ hex: colorPicker.color.hexString, rgb: colorPicker.color.rgb });
+        const data = JSON.stringify({ account: '123', name: "test" });
         Telegram.WebApp.sendData(data);
         Telegram.WebApp.close();
     });
@@ -24,7 +24,6 @@
 </script>
 
 <body>
-    <input type='button' id="Test" value="按鈕">
     <div class="inputBox">
         <select class="form-select" name="p_college" id="p_college" onchange="getData.name" required></select>
         <span>姓名</span>
