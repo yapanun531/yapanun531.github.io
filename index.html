@@ -22,6 +22,9 @@
         <input type="password" id="password" required>
         <span>密碼:</span>
     </div>
+    <div>
+        <button type="button" onclick="sendData()">測試</button>
+    </div>
 </body>
 
 <script type="text/javascript">
@@ -33,15 +36,18 @@
     }
     nameSelect.innerHTML = inner;
 
-    const account = document.getElementById('account').value;
-    const password = document.getElementById('password').value;
-    const name = document.getElementById('name').value;
-    Telegram.WebApp.ready();
-    Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
-        const data = JSON.stringify({ account: account, name: name, password: password });
-        Telegram.WebApp.sendData(data);
-        Telegram.WebApp.close();
-    });
+    function sendData() {
+        const account = document.getElementById('account').value;
+        const password = document.getElementById('password').value;
+        const name = document.getElementById('name').value;
+        Telegram.WebApp.ready();
+        Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
+            const data = JSON.stringify({ account: account, name: name, password: password });
+            Telegram.WebApp.sendData(data);
+            Telegram.WebApp.close();
+        });
+    }
+
     Telegram.WebApp.expand();
 </script>
 
