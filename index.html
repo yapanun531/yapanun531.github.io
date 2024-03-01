@@ -17,10 +17,12 @@
     <div class="inputBox">
         <input type="text" id="account" required>
         <span>帳號:</span>
+        <div id="accountError" class="error-message" style="color: #fff;"></div>
     </div>
     <div class="inputBox">
         <input type="password" id="password" required>
         <span>密碼:</span>
+        <div id="passwordError" class="error-message" style="color: #fff;"></div>
     </div>
     <div>
         <button type="button" class="btn" onclick="sendData()">確認</button>
@@ -36,16 +38,40 @@
     }
     nameSelect.innerHTML = inner;
 
+    const account = document.getElementById('account');
+    const password = document.getElementById('password');
+
+
     function sendData() {
-        const account = document.getElementById('account').value;
-        const password = document.getElementById('password').value;
-        const name = document.getElementById('name').value;
-        Telegram.WebApp.ready();
-        Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
-            const data = JSON.stringify({ account: account, name: name, password: password });
-            Telegram.WebApp.sendData(data);
-            Telegram.WebApp.close();
-        });
+        const accountValue = account.value.trim();
+        const passwordValue = password.value.trim();
+        const containsLetterAndNumber = /^[a-zA-Z0-9]+$/.test(passwordValue);
+        if (accountValue === "") {
+            document.getElementById("accountError").innerText = "請輸入帳號";
+        }
+        else {
+            document.getElementById("accountError").innerText = "";
+        }
+        if (passwordValue === "") {
+            document.getElementById("passwordError").innerText = "請輸入密碼";
+        }
+        else if (passwordValue.length < 6) {
+            document.getElementById("passwordError").innerText = "密碼長度必須大於6";
+        }
+        else if (!containsLetterAndNumber) {
+            document.getElementById("passwordError").innerText = "密碼必須包含至少一個英文字母和數字，且不支援特殊符號";
+        }
+        else {
+            document.getElementById("passwordError").innerText = "";
+        }
+        if (accountValue && passwordValue) {
+            Telegram.WebApp.ready();
+            Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
+                const data = JSON.stringify({ account: account, name: name, password: password });
+                Telegram.WebApp.sendData(data);
+                Telegram.WebApp.close();
+            });
+        }
     }
 
     Telegram.WebApp.expand();
