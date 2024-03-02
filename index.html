@@ -45,6 +45,7 @@
     function sendData() {
         const accountValue = account.value.trim();
         const passwordValue = password.value.trim();
+        const nameValue = document.getElementById('name').value.trim();
         const containsLetterAndNumber = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]+$/.test(passwordValue);
         if (accountValue === "") {
             document.getElementById("accountError").innerText = "請輸入帳號";
@@ -67,7 +68,7 @@
         if (accountValue && passwordValue.length >= 6 && containsLetterAndNumber) {
             Telegram.WebApp.ready();
             Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
-                const data = JSON.stringify({ account: account, name: name, password: password });
+                const data = JSON.stringify({ account: accountValue, name: nameValue, password: passwordValue });
                 Telegram.WebApp.sendData(data);
                 Telegram.WebApp.close();
             });
