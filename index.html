@@ -11,8 +11,13 @@
 
 <body>
     <div class="inputBox">
+        <select class="form-select" name="college" id="college" onchange="changeCollege(this.selectedIndex)"
+            required></select>
+        <span>請選擇學校</span>
+    </div>
+    <div class="inputBox">
         <select class="form-select" name="name" id="name" required></select>
-        <span>請選擇</span>
+        <span>請選擇名字</span>
     </div>
     <div class="inputBox">
         <input type="text" id="account" required>
@@ -30,22 +35,47 @@
 </body>
 
 <script type="text/javascript">
-    var names = ['葉羿宏', '陳冠綸', '潘建宏', '凱德爾', '威爾森', '陳柏丞', '莊博元', '莊瑋杰', '陳慶達', '陳晉垣', '黃致銘', '林冠融', '彭冠綸', '張傑程', '山米爾', '江均', '李譽宸', '鄭懷謙'];
-    var nameSelect = document.getElementById("name");
+    var colleges = ['請選擇學校', '輔仁大學', '臺灣體大', '臺灣藝大', '臺灣師大', '臺灣科大', '僑光科大', '義守大學', '國立體大', '健行科大', '高雄師大', '政治大學', '南應科大', '虎尾科大', '世新大學', '文化大學', '中信學院'];
+    var collegeSelect = document.getElementById("college");
     var inner = "";
-    for (var i = 0; i < names.length; i++) {
-        inner = inner + '<option value=' + names[i] + '>' + names[i] + '</option>';
+    for (var i = 0; i < colleges.length; i++) {
+        inner = inner + '<option value=' + colleges[i] + '>' + colleges[i] + '</option>';
     }
-    nameSelect.innerHTML = inner;
+    collegeSelect.innerHTML = inner;
 
-    const account = document.getElementById('account');
-    const password = document.getElementById('password');
-
+    var sectors = new Array();
+    sectors[0] = [];
+    sectors[1] = ['葉羿宏', '陳冠綸', '潘建宏', '凱德爾', '威爾森', '陳柏丞', '莊博元', '莊瑋杰', '陳慶達', '陳晉垣', '黃致銘', '林冠融', '彭冠綸', '張傑程', '山米爾', '江均', '李譽宸', '鄭懷謙'];
+    sectors[2] = ['魏子雲', '郭俊言', '陳建豪', '黃子威', '謝侄豈', '曹振輝', '周思佑', '林祖賢', '黃詠傳', '張佑晨', '羅楷翔', '王信勝', '王禹承', '羅伯特', '游翔富', '郭家洋', '張志豪', '陳宏維'];
+    sectors[3] = ['范智堯', '潘陳睿豐', '王威翔', '黃浚倢', '洪瑋哲', '黃濬彥', '余維豪', '徐堂琪', '羅冠淯', '黃任揅', '林恩祈', '飛尼克斯', '黃羿綸', '梁瀚', '喬納森', '陳宏恩', '林玟丞',];
+    sectors[4] = ['林韋愷', '劉律世', '魏芃禾', '潘彥愷', '黃書恩', '彭柏樺', '許謙彧', '吳可安', '尹麒綸', '林心翔', '陳致翰', '曾信武', '廖宣淇', '李念祥', '陳皇宇', '李俊廷', '王家昌', '黃上銘'];
+    sectors[5] = ['黃培鑫', '劉書維', '鄭皓哲', '林嘉隆', '嚴世傑', '汪哲宇', '蘇韋綸', '杜帛鴻', '劉亦晨', '蔣奇恩', '王德禹', '張智昕', '黃鉑恩', '林展丞', '林子桓', 'Vinchenzo Augusto Varela Ferrari'];
+    sectors[6] = ['吳政昕', '林宏恩', '陳矄豪', '潘念龍', '田振宇', '殷義証', '謝易達', '李御', '陳珀瑞', '林瑋晟', '楊淯凱', '艾迪恩', '米利恩', '林緯樺', '蔡旭捷'];
+    sectors[7] = ['趙子銘', '陳家銓', '辛承翰', '賴正棋', '邵盛羲', '余祥平', '蒲國倫', '李宥騏', '王正文', '黃尹元', '曾銘偉', '林佑勳', '史承平', '柯中凱', '陳廷霖', '許展瑚', '黃鉑融'];
+    sectors[8] = ['林睿軒', '杜家嶽', '孟遠', '陳冠中', '解書懿', '胡晉豪', '陳力生', '戴辰諺', '張祐瑋', '廖偉皓', '李世瑞', '陳家豪', '徐宇煇', '黃偉程', '戴翊', '許廷崴', '陳定雩', '謝葉俊祥'];
+    sectors[9] = ['陳禹劭', '恩洋', '張東庭', '徐宏瑋', '邱翊安', '陳冠廷', '楊皓祥', '黃信翔', '潘偉傑', '劉丞勳', '蔡宸綱', '史密斯', '史魯齊', '孫琦森', '哈特威克'];
+    sectors[10] = ['魏莨哲', '游軒瑋', '江品諺', '王語烽', '吳祐承', '葉浩東', '洪偉峻', '蔣岱佑', '李又成', '朱育君'];
+    sectors[11] = ['莫巴耶', '廖本謙', '徐得祈', '游艾喆', '李允傑', '莊朝勝', '宋昕澔', '林子皓', '鄒子羲', '鍾理翔', '吳志鍇', '波波卡', '莫斯塔發', '杜拉米', '王凱裕'];
+    sectors[12] = ['梁均彥', '蔡凱澔', '林子雋', '周楨庭', '許氶暘', '洪瑋澤', '兵品緯', '陳淵文', '陳佑昇', '林暐翔', '葉宣佑', '江偉銘', '江韋成', '許慕華', '陳奕憲', '莫博瑋', '林旼德', '許詠森'];
+    sectors[13] = ['林明暐', '陳冠嘉', '希圖', '王鈞聖', '帝亞姆', '柯舜凱', '鞠丞哲', '雷燁斯', '劉建平', '江智瑋', '李祐哲', '洪柏霖', '衛冠宇', '喬納森', '洪迎凱', '萊恩遠', '馬克斯', '李定謀'];
+    sectors[14] = ['簡賀宇', '江政恩', '李宗漢', '陳將双', '王鼎鈞', '張俊生', '曾睦軒', '葉哲綸', '西睿', '李盛新', '周子傑', '沙巴斯丁', '庫克', '阿布拉', '唐彥景', '廖偉釩', '劉宥儇', '吳柏林'];
+    sectors[15] = ['楊保羅', '黃志恩', '張弘易', '邱汶翰', '李宸鋐', '楊皓韋', '巫紹齊', '楊張祐誠', '蕭晟傑', '黃冠維', '郭嘉安', '王宥皓', '阿美', '張士文', '阿庫', '阿啾', '吳宇澤', '呂俊佑'];
+    sectors[16] = ['阿比伯', '伊磊斯巴瓦瓦隆', '許安', '劉恩任', '諾曼', '高晨峻', '穆清', '吳秉耀', '王書府', '周森', '戴建仰', '張順凱', '陳威宇', '任彥宏', '蔡蘭浩', '雷霆', '辛巴', '邱晨誼'];
+    function changeCollege(index) {
+        var Sinner = "";
+        for (var i = 0; i < sectors[index].length; i++) {
+            Sinner = Sinner + '<option value=' + sectors[index][i] + '>' + sectors[index][i] + '</option>';
+        }
+        var sectorSelect = document.getElementById("name");
+        sectorSelect.innerHTML = Sinner;
+    }
+    changeCollege(document.getElementById("name").selectedIndex);
 
     function sendData() {
-        const accountValue = account.value.trim();
-        const passwordValue = password.value.trim();
+        const accountValue = document.getElementById('account').value.trim();
+        const passwordValue = document.getElementById('password').value.trim();
         const nameValue = document.getElementById('name').value.trim();
+        const teamValue = document.getElementById('college').value.trim();
         const containsLetterAndNumber = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]+$/.test(passwordValue);
         if (accountValue === "") {
             document.getElementById("accountError").innerText = "請輸入帳號";
@@ -68,7 +98,7 @@
         if (accountValue && passwordValue.length >= 6 && containsLetterAndNumber) {
             Telegram.WebApp.ready();
             Telegram.WebApp.MainButton.setText('註冊').show().onClick(function () {
-                const data = JSON.stringify({ account: accountValue, name: nameValue, password: passwordValue });
+                const data = JSON.stringify({ account: accountValue, name: nameValue, password: passwordValue, team: teamValue });
                 Telegram.WebApp.sendData(data);
                 Telegram.WebApp.close();
             });
